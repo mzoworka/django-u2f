@@ -29,7 +29,7 @@ matrix:
           env: DJANGO_PACKAGE="Django==2.0"
 install:
   - pip install --upgrade pip wheel
-  - pip install -q $DJANGO_PACKAGE 
+  - pip install -q $DJANGO_PACKAGE
   - pip install --pre -e .$EXTRAS
   - pip install -r ./testproj/requirements.txt
   - pip freeze

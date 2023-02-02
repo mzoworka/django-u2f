@@ -8,13 +8,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('django_u2f', '0003_add_totp'),
+        ("django_u2f", "0003_add_totp"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='u2fkey',
-            name='public_key',
+            model_name="u2fkey",
+            name="public_key",
             field=models.TextField(unique=True),
         ),
     ]

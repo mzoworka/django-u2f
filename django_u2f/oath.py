@@ -1,10 +1,11 @@
 from __future__ import division
 
 import datetime
-import struct
-import hmac
 import hashlib
+import hmac
+import struct
 import time
+
 import six
 
 
@@ -28,25 +29,25 @@ def hotp(key, counter, digits=6):
     '520489'
     """
 
-    msg = struct.pack('>Q', counter)
+    msg = struct.pack(">Q", counter)
     hs = hmac.new(key, msg, hashlib.sha1).digest()
-    offset = six.indexbytes(hs, 19) & 0x0f
-    val = struct.unpack('>L', hs[offset:offset + 4])[0] & 0x7fffffff
-    return '{val:0{digits}d}'.format(val=val % 10 ** digits, digits=digits)
+    offset = six.indexbytes(hs, 19) & 0x0F
+    val = struct.unpack(">L", hs[offset : offset + 4])[0] & 0x7FFFFFFF
+    return "{val:0{digits}d}".format(val=val % 10**digits, digits=digits)
 
 
 def T(t, step=30):
     """
     The TOTP T value (number of time steps since the epoch)
     """
-    if hasattr(t, 'timestamp'):
+    if hasattr(t, "timestamp"):
         timestamp = t.timestamp()
     else:
         # python 2
         if t.tzinfo is None:
             timestamp = time.mktime(t.timetuple())
         else:
-            utc_naive  = t.replace(tzinfo=None) - t.utcoffset()
+            utc_naive = t.replace(tzinfo=None) - t.utcoffset()
             timestamp = (utc_naive - datetime.datetime(1970, 1, 1)).total_seconds()
 
     return int(timestamp) // step

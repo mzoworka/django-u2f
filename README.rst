@@ -32,7 +32,7 @@ handle that.
 Demo
 ====
 
-To see a demo, use the test project included in the repo and perform the 
+To see a demo, use the test project included in the repo and perform the
 following steps (using virtualenv is optional)::
 
    git clone https://github.com/gavinwahl/django-u2f
@@ -46,7 +46,7 @@ following steps (using virtualenv is optional)::
    python manage.py createsuperuser
 
    # finally create a self-signed certificate and start the webserver
-   ./mkcert.sh  
+   ./mkcert.sh
    python manage.py runserver_plus --cert localhost
 
 For now the only supported browser is Chrome, version 41 or higher.
